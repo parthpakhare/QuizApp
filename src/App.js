@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import Quiz from './Components/Quiz';
+import classes from './App.module.css';
+
+const App = () => {
+
+  const [begin, setBegin] = useState(false)
+  
+  const beginhandler = () => {
+    setBegin(true)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.App}>
+      <div className={classes.Container}>
+        {!begin ? 
+          <div className={classes.Content}>
+            <h1>Do you want to begin with the QUIZ ?</h1>
+            <button onClick={beginhandler} >START</button>
+          </div>
+          :
+          <Quiz/>
+        }
+      </ div> 
     </div>
   );
 }
